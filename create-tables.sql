@@ -54,19 +54,19 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `reviews` ;
 
 CREATE TABLE IF NOT EXISTS `reviews` (
-  `users_id` INT UNSIGNED NOT NULL,
-  `movies_id` INT UNSIGNED NOT NULL,
+  `user_id` INT UNSIGNED NOT NULL,
+  `movie_id` INT UNSIGNED NOT NULL,
   `rating` INT UNSIGNED NOT NULL,
   `comment` TEXT(5000) NULL,
-  PRIMARY KEY (`users_id`, `movies_id`),
-  INDEX `fk_reviews_movies1_idx` (`movies_id` ASC),
+  PRIMARY KEY (`user_id`, `movie_id`),
+  INDEX `fk_reviews_movies1_idx` (`movie_id` ASC),
   CONSTRAINT `fk_reviews_users`
-    FOREIGN KEY (`users_id`)
+    FOREIGN KEY (`user_id`)
     REFERENCES `users` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_reviews_movies1`
-    FOREIGN KEY (`movies_id`)
+    FOREIGN KEY (`movie_id`)
     REFERENCES `movies` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
