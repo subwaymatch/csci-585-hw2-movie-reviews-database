@@ -80,17 +80,17 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `lead` ;
 
 CREATE TABLE IF NOT EXISTS `lead` (
-  `movies_id` INT UNSIGNED NOT NULL,
-  `actors_id` INT UNSIGNED NOT NULL,
-  PRIMARY KEY (`movies_id`, `actors_id`),
+  `movie_id` INT UNSIGNED NOT NULL,
+  `actor_id` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`movie_id`, `actor_id`),
   INDEX `fk_lead_actors1_idx` (`actors_id` ASC),
   CONSTRAINT `fk_lead_movies1`
-    FOREIGN KEY (`movies_id`)
+    FOREIGN KEY (`movie_id`)
     REFERENCES `movies` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_lead_actors1`
-    FOREIGN KEY (`actors_id`)
+    FOREIGN KEY (`actor_id`)
     REFERENCES `actors` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
