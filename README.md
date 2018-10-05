@@ -495,13 +495,8 @@ The `lead` table is inner joined with itself, and grouped by actor 1 and actor 2
 |--------------|--------------|-------| 
 | 1            | 2            | 3     | 
 | 1            | 3            | 1     | 
-| 1            | 5            | 1     | 
-| 1            | 7            | 1     | 
-| 1            | 9            | 1     | 
 | 2            | 3            | 2     | 
 | 2            | 4            | 1     | 
-| 2            | 5            | 2     | 
-| 2            | 6            | 1     | 
 
 - Since the desired result requires actors' names, `lead` tables are joined with `actors` table. 
 ```sql
@@ -509,6 +504,13 @@ SELECT l.movie_id, l.actor_id, a.name as actor_name
 FROM `lead` l
 INNER JOIN `actors` a ON l.actor_id = a.id
 ```
+This will result in a `lead` table with actor names appended to the right. 
+
+| movie_id | actor_id | actor_name      | 
+|----------|----------|-----------------| 
+| 3        | 1        | "Mark Clarkson" | 
+| 16       | 1        | "Mark Clarkson" | 
+
 
 - We only need the actors who played the lead together the most. To find the pair that has appeared the most, we first need to find the max value of co-appearances. 
 ```sql
