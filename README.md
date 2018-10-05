@@ -3,10 +3,11 @@
 **USCID:** yejoopar@usc.edu<br><br>
 This report was written in Github-flavored markdown. 
 
-## Sample Data
+## Sample Data / Assumptions
 
 - For sample data used in this homework, please refer to **Appendix A**. 
-
+- For genders, strings 'Male' and 'Female' are used (in PascalCase, not lowercase). 
+- For string types (user name, actor name, movie title, movie genre, and etc..), we assume that it is at maximum 100 characters in length. Therefore, a `VARCHAR(100)` type is used. 
 
 
 ## Creating the tables
