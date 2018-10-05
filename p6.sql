@@ -21,6 +21,6 @@ HAVING COUNT(l1.actor_id) = (
 	INNER JOIN `actors` a ON l1.actor_id = a.id
 	WHERE l1.actor_id < l2.actor_id
 	GROUP BY l1.actor_id, l2.actor_id
-	ORDER BY count DESC
+	ORDER BY 'count' DESC
 	LIMIT 1
 )

@@ -1,4 +1,4 @@
-SELECT u.name as 'Actor'
+SELECT u.name as 'Name'
 FROM `users` u
 INNER JOIN `reviews` r ON r.user_id = u.id
 INNER JOIN `movies` m ON r.movie_id = m.id
