@@ -26,4 +26,4 @@ WHERE m.genre IN (
 				WHERE u.name = 'John Doe'
 				GROUP BY m.genre) genre_ratings)
 			)
-	ORDER BY m.genre, m.name ASC;
+ORDER BY m.genre, m.name ASC;
