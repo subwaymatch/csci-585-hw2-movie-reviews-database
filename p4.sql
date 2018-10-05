@@ -1,4 +1,4 @@
-SELECT m.name as movie_name
+SELECT m.name as 'Movie'
 FROM `reviews` r
 INNER JOIN `movies` m ON m.id = r.movie_id
 WHERE YEAR(m.release_date) < 2006

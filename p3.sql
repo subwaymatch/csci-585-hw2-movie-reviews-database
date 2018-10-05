@@ -1,4 +1,4 @@
-SELECT DISTINCT m.id as movie_id
+SELECT DISTINCT m.id as 'Movie ID'
 FROM `movies` m
 INNER JOIN `lead` l ON l.movie_id = m.id
 INNER JOIN `actors` a ON l.actor_id = a.id

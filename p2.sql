@@ -1,5 +1,5 @@
 # Select movies under favorite genre(s)
-SELECT m.name, m.genre
+SELECT m.name as 'Movie', m.genre as 'Genre'
 FROM `movies` m
 WHERE m.genre IN (
 	# Select top genres
@@ -26,4 +26,4 @@ WHERE m.genre IN (
 				WHERE u.name = 'John Doe'
 				GROUP BY m.genre) genre_ratings)
 			)
-	ORDER BY m.genre, m.name ASC
+	ORDER BY m.genre, m.name ASC;

@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `lead` (
   `movie_id` INT UNSIGNED NOT NULL,
   `actor_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`movie_id`, `actor_id`),
-  INDEX `fk_lead_actors1_idx` (`actors_id` ASC),
+  INDEX `fk_lead_actors1_idx` (`actor_id` ASC),
   CONSTRAINT `fk_lead_movies1`
     FOREIGN KEY (`movie_id`)
     REFERENCES `movies` (`id`)
