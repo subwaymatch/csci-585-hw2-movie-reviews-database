@@ -1,4 +1,13 @@
 # CSCI 585 - Homework 2
+**Submitter:** Ye Joo Park (USC# 1128685151)<br>
+**USCID:** yejoopar@usc.edu<br><br>
+This report was written in Github-flavored markdown. 
+
+## Sample Data
+
+- For sample data used in this homework, please refer to **Appendix A**. 
+
+
 
 ## Creating the tables
 
@@ -440,6 +449,7 @@ ORDER BY 'Average Rating' DESC, m.id ASC;
 
 
 
+
 ## Question 6
 - Find the actors who played the lead together the most
 - Display their names and the number of times they played the lead together
@@ -529,3 +539,153 @@ This returns 3 in our example.
 - In this query, we need to group first by actor 1, and actor 2 (`GROUP BY l1.actor_id, l2.actor_id`). 
 - Grouping without a `WHERE` constraint will result in duplicate values (where actor1 and actor2 are simply swapped), and have values where actor1 = actor2. To avoid this redundancies, a `WHERE l1.actor_id < l2.actor_id` filter is added. 
 - The results will show actor names that are grabbed from the `INNER JOIN`ed `lead` tables. 
+
+
+
+
+
+## Appendix A - Sample Data used for queries above
+
+## Users
+
+| id | name                  | date_of_birth | 
+|----|-----------------------|---------------| 
+| 1  | "John Doe"            | 1991-04-16    | 
+| 2  | "Heda Pittford"       | 1989-04-07    | 
+| 3  | "Charmian Tackell"    | 1999-04-29    | 
+| 4  | "Moyna Acutt"         | 1985-04-20    | 
+| 5  | "Barrett Asplin"      | 1978-06-20    | 
+| 6  | "Sher Buzine"         | 1951-05-18    | 
+| 7  | "Dre Mumm"            | 1996-01-25    | 
+| 8  | "Valentina Tough"     | 1941-07-20    | 
+| 9  | "Dalston Gornall"     | 1987-09-17    | 
+| 10 | "Bibbie Leffek"       | 1982-11-30    | 
+| 11 | "Daile Lynthal"       | 2001-01-11    | 
+| 12 | "De Stranaghan"       | 1985-10-20    | 
+| 13 | "Beniamino Oakenfall" | 1971-02-14    | 
+| 14 | "Skell Bull"          | 1984-02-19    | 
+| 15 | "Kassey Murkitt"      | 1991-11-27    | 
+| 16 | "Hermione Kalkofen"   | 1968-03-26    | 
+| 17 | "Almeria MacKaig"     | 2000-03-25    | 
+| 18 | "Rufe Tidey"          | 1981-10-29    | 
+| 19 | "Raimondo Gardiner"   | 1984-06-07    | 
+| 20 | "Barbee Brozek"       | 1985-10-13    | 
+
+
+
+
+### Movies
+
+| id | name                                               | genre   | release_date | 
+|----|----------------------------------------------------|---------|--------------| 
+| 1  | Notebook                                           | Romance | 2004-08-11   | 
+| 2  | Cherrybomb                                         | Drama   | 2007-09-23   | 
+| 3  | "Shepherd: Border Patrol"                          | Action  | 2006-03-22   | 
+| 4  | "Ninjas vs. Zombies"                               | Comedy  | 2004-04-03   | 
+| 5  | "Pebble and the Penguin"                           | Action  | 1984-04-23   | 
+| 6  | "Think Fast, Mr. Moto"                             | Drama   | 1975-08-08   | 
+| 7  | "Sentimental Swordsman"                            | Action  | 2018-03-13   | 
+| 8  | "Baby-Sitters Club, The"                           | Drama   | 1971-03-19   | 
+| 9  | "Mystic Masseur"                                   | Drama   | 1974-06-20   | 
+| 10 | "Sons of Katie Elder"                              | Action  | 1990-06-13   | 
+| 11 | Doomsday                                           | Action  | 2006-12-08   | 
+| 12 | "Listen to Britain"                                | Comedy  | 1990-10-29   | 
+| 13 | "Lot Like Love"                                    | Comedy  | 2017-03-09   | 
+| 14 | "Sunset Strip"                                     | Romance | 2010-06-01   | 
+| 15 | "Friday the 13th Part VIII: Jason Takes Manhattan" | Drama   | 1957-11-17   | 
+| 16 | "Police Story"                                     | Comedy  | 2016-08-23   | 
+| 17 | "Prodigal Son"                                     | Drama   | 1943-07-14   | 
+| 18 | "Nina's Heavenly Delights"                         | Comedy  | 2006-08-14   | 
+| 19 | "Repo Man"                                         | Comedy  | 2000-08-18   | 
+| 20 | "Walking on Sunshine"                              | Romance | 1968-01-25   | 
+
+
+
+### Reviews
+
+| user_id | movie_id | rating | comment                                                              | 
+|---------|----------|--------|----------------------------------------------------------------------| 
+| 1       | 1        | 1      | "I hate romance"                                                     | 
+| 1       | 2        | 2      | "Drama is okay"                                                      | 
+| 1       | 3        | 10     | "I like actions, and this is perfect"                                | 
+| 1       | 4        | 8      | "Very funny"                                                         | 
+| 1       | 5        | 6      | "Too bollywoodish"                                                   | 
+| 2       | 1        | 8      | "Pretty good"                                                        | 
+| 2       | 2        | 3      | "Typical drama, wouldn't watch again"                                | 
+| 3       | 1        | 9      | "Very nice"                                                          | 
+| 3       | 3        | 10     | "I would consider to be the best action in the history of mankind. " | 
+| 4       | 1        | 4      | Perfecto!!                                                           | 
+| 4       | 3        | 10     | "NOW I KNOW WHY PEOPLE ARE CRAZY ABOUT THIS"                         | 
+| 5       | 1        | 3      | "One of the worst"                                                   | 
+| 6       | 12       | 8      | "a British comedy that makes all of us laugh.  "                     | 
+| 6       | 14       | 2      | "Why is this even made?"                                             | 
+| 10      | 17       | 5      | "Overhyped. Overpriced. "                                            | 
+| 11      | 17       | 8      | "Not as good as the anticipation, but not bad at all. "              | 
+| 12      | 18       | 10     | "Would watch a 100 times"                                            | 
+| 15      | 18       | 9      | "Laughed all night long"                                             | 
+| 16      | 18       | 9      | "One of the most memorable comedies of 2006"                         | 
+| 17      | 19       | 9      | "Almost perfect"                                                     | 
+| 17      | 20       | 10     | Perfect                                                              | 
+| 18      | 19       | 10     | "THE MASTERPIECE of all times"                                       | 
+| 18      | 20       | 9      | "Better lovestory than twilight"                                     | 
+
+
+
+### Actors
+
+| id | name              | gender | date_of_birth | 
+|----|-------------------|--------|---------------| 
+| 1  | "Mark Clarkson"   | Male   | 1958-01-11    | 
+| 2  | "Jack Drake"      | Male   | 2004-04-20    | 
+| 3  | "Micheal Ballham" | Male   | 1999-09-25    | 
+| 4  | "Belford Durling" | Male   | 1998-04-26    | 
+| 5  | "Ben Coulthard"   | Male   | 1996-03-17    | 
+| 6  | "Erl Adamczyk"    | Male   | 1964-10-01    | 
+| 7  | "Pavel Pigot"     | Male   | 1942-05-03    | 
+| 8  | "Rufe Normadell"  | Male   | 1991-05-10    | 
+| 9  | "Toby Tregenza"   | Male   | 1959-07-28    | 
+| 10 | "Leonard Levy"    | Male   | 2007-11-01    | 
+| 11 | "Fishay Winkell"  | Female | 1941-03-06    | 
+| 12 | "Delcina Rapsey"  | Female | 1956-02-09    | 
+| 13 | "Chasey Meekan"   | Female | 1960-05-05    | 
+| 14 | "Tracey Radbone"  | Female | 1955-08-16    | 
+| 15 | "Angela Towler"   | Female | 1989-01-20    | 
+| 16 | "Idelle Upham"    | Female | 1968-11-26    | 
+| 17 | "Shelba Smyley"   | Female | 2008-03-09    | 
+| 18 | "Nicolle Poel"    | Female | 2003-03-21    | 
+| 19 | "Lorrie Brodie"   | Female | 1948-10-21    | 
+| 20 | "Helaine Itzig"   | Female | 1957-02-26    | 
+
+
+
+### Lead
+
+| movie_id | actor_id | 
+|----------|----------| 
+| 1        | 14       | 
+| 1        | 16       | 
+| 1        | 18       | 
+| 1        | 20       | 
+| 2        | 4        | 
+| 2        | 6        | 
+| 2        | 8        | 
+| 2        | 10       | 
+| 3        | 1        | 
+| 3        | 2        | 
+| 3        | 3        | 
+| 3        | 5        | 
+| 3        | 7        | 
+| 3        | 9        | 
+| 4        | 2        | 
+| 4        | 3        | 
+| 4        | 4        | 
+| 4        | 5        | 
+| 4        | 6        | 
+| 4        | 7        | 
+| 16       | 1        | 
+| 16       | 2        | 
+| 17       | 1        | 
+| 17       | 2        | 
+| 18       | 1        | 
+| 19       | 1        | 
+| 20       | 1        | 
