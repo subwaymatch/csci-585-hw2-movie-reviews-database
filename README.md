@@ -403,7 +403,10 @@ FROM '{OUR_SUBQUERY_TO_FIND_AVERAGES_OF_EACH_MOVIE}'
 
 
 ## Question 5
-List the movie ID(s) with most male lead
+- List movie ID(s) and average review(s) where the average is higher than 9
+- On of the leading actor is 'Mark Clarkson'
+- Sort output by average reviews and then movie IDs.
+** I've assumed that average reviews are shown in a descending order (since we normally want to show movies with highest ratings first). On the contrary, movie IDs are ordered in ascending order. 
 
 ### Query
 ```sql
@@ -427,10 +430,19 @@ ORDER BY 'Average Rating' DESC, m.id ASC;
 | 19         | 9.5000           | 
 | 20         | 9.5000           | 
 
+### Explanation
+- First, we join `movies`, `reviews`, `lead`, and `actors` tables and calculate averages using `AVG(r.rating)` function. 
+- We want to get the averages of each movie. `GROUP BY m.id` is used to group our joined result by movie IDs. Running an aggregate function (`AVG()` in this case) will be applied to each group individually. 
+- Since we only want movies where 'Mark Clarkson' appeared, a `WHERE a.name = 'Mark Clarkson'` clause is used to filter the results. 
+- We need to find movies with average rating higher than 9. Since we are comparing an aggregated value (average), `HAVING` clause is used. 
+- Finally, `ORDER BY 'Average Rating' DESC, m.id ASC` is used to sort the results by average rating first (in a descending order since we usually want to show higher ratings first), and then by movie id in an ascending order. 
+
+
 
 
 ## Question 6
-List the movie ID(s) with most male lead
+- Find the actors who played the lead together the most
+- Display their names and the number of times they played the lead together
 
 ### Query
 ```sql
@@ -438,15 +450,15 @@ SELECT l1.actor_name as Actor1, l2.actor_name as Actor2, COUNT(l1.actor_id) as '
 FROM 
 	(
 		SELECT l.movie_id, l.actor_id, a.name as actor_name
-        FROM `lead` l
-        INNER JOIN `actors` a ON l.actor_id = a.id
-    ) l1
+        	FROM `lead` l
+		INNER JOIN `actors` a ON l.actor_id = a.id
+	) l1
 INNER JOIN
 	(
 		SELECT l.movie_id, l.actor_id, a.name as actor_name
-        FROM `lead` l
-        INNER JOIN `actors` a ON l.actor_id = a.id
-    ) l2 ON l1.movie_id = l2.movie_id
+		FROM `lead` l
+		INNER JOIN `actors` a ON l.actor_id = a.id
+	) l2 ON l1.movie_id = l2.movie_id
 INNER JOIN `actors` a ON l1.actor_id = a.id
 WHERE l1.actor_id < l2.actor_id
 GROUP BY l1.actor_id, l2.actor_id
@@ -468,3 +480,50 @@ HAVING COUNT(l1.actor_id) = (
 |-----------------|--------------|-------| 
 | "Mark Clarkson" | "Jack Drake" | 3     | 
 
+### Explanation 
+- To make the explanation simple, please take a look at the simplified query to find count of all occurences of playing together in a movie between two actors. 
+```sql
+SELECT l1.actor_id as 'Actor ID 1', l2.actor_id as 'Actor ID 2', COUNT(l1.actor_id) as 'count'
+FROM `lead` l1
+INNER JOIN `lead` l2 ON l1.movie_id = l2.movie_id
+WHERE l1.actor_id < l2.actor_id
+GROUP BY l1.actor_id, l2.actor_id
+```
+The `lead` table is inner joined with itself, and grouped by actor 1 and actor 2. The result format of this simplified query is shown below. 
+
+| "Actor ID 1" | "Actor ID 2" | count | 
+|--------------|--------------|-------| 
+| 1            | 2            | 3     | 
+| 1            | 3            | 1     | 
+| 1            | 5            | 1     | 
+| 1            | 7            | 1     | 
+| 1            | 9            | 1     | 
+| 2            | 3            | 2     | 
+| 2            | 4            | 1     | 
+| 2            | 5            | 2     | 
+| 2            | 6            | 1     | 
+
+- Since the desired result requires actors' names, `lead` tables are joined with `actors` table. 
+```sql
+SELECT l.movie_id, l.actor_id, a.name as actor_name
+FROM `lead` l
+INNER JOIN `actors` a ON l.actor_id = a.id
+```
+
+- We only need the actors who played the lead together the most. To find the pair that has appeared the most, we first need to find the max value of co-appearances. 
+```sql
+SELECT COUNT(l1.actor_id) as 'count'
+FROM `lead` l1
+INNER JOIN `lead` l2 ON l1.movie_id = l2.movie_id
+INNER JOIN `actors` a ON l1.actor_id = a.id
+WHERE l1.actor_id < l2.actor_id
+GROUP BY l1.actor_id, l2.actor_id
+ORDER BY 'count' DESC
+LIMIT 1
+```
+This returns 3 in our example. 
+
+- The max co-appearance count calculated above is used in `HAVING` clause to filter aggregated results. 
+- In this query, we need to group first by actor 1, and actor 2 (`GROUP BY l1.actor_id, l2.actor_id`). 
+- Grouping without a `WHERE` constraint will result in duplicate values (where actor1 and actor2 are simply swapped), and have values where actor1 = actor2. To avoid this redundancies, a `WHERE l1.actor_id < l2.actor_id` filter is added. 
+- The results will show actor names that are grabbed from the `INNER JOIN`ed `lead` tables. 
