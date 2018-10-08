@@ -1,4 +1,4 @@
-# CSCI 585 - Homework 2
+# CSCI 585 HW 2 - SQL Queries
 **Submitter:** Ye Joo Park (USC# 1128685151)<br>
 **USCID:** yejoopar@usc.edu<br><br>
 This report was written in Github-flavored markdown. 
