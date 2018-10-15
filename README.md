@@ -14,7 +14,7 @@ This report was written in Github-flavored markdown.
 
 - Below is the script for creating tables as specified in the assignment. 
 - The name of the database is `movie_review_app`. 
-- For foreign keys, the default action on `DELETE` and `Update` is `CASCADE`.
+- For foreign keys, the default action on `DELETE` and `UPDATE` is `CASCADE`.
 
 ```sql
 -- -----------------------------------------------------
@@ -414,7 +414,7 @@ FROM '{OUR_SUBQUERY_TO_FIND_AVERAGES_OF_EACH_MOVIE}'
 
 ## Question 5
 - List movie ID(s) and average review(s) where the average is higher than 9
-- On of the leading actor is 'Mark Clarkson'
+- One of the leading actor is 'Mark Clarkson'
 - Sort output by average reviews and then movie IDs.
 ** I've assumed that average reviews are shown in a descending order (since we normally want to show movies with highest ratings first). On the contrary, movie IDs are ordered in ascending order. 
 
